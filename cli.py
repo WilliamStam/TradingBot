@@ -60,7 +60,6 @@ if __name__ == '__main__':
     ex = ThreadPoolExecutor(max_workers=max_workers)
 
 
-
     while True:
         symbols = app.loop.run_until_complete(active_symbols())
         # print("ACTIVE:",symbols)
