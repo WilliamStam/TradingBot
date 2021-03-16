@@ -1,0 +1,22 @@
+# /opt/docker-compose.yml
+---
+version: '3.9'
+services:
+  db:
+    image: mariadb
+    restart: unless-stopped
+    volumes:
+      - /tradebot/data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: stars
+
+  adminer:
+    image: adminer
+    restart: unless-stopped
+    ports:
+      - 3067:8080
+
+
+networks:
+  tradingbot:
+    name: tradingbot
