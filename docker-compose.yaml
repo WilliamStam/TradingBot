@@ -17,11 +17,21 @@ services:
   adminer:
     image: adminer
     restart: unless-stopped
+    depends_on:
+      - db
     ports:
       - 3307:8080
     networks:
       - tradingbot
 
+
+  bot:
+    image: ghcr.io/WilliamStam/TradingBot:latest
+    restart: unless-stopped
+    depends_on:
+      - db
+    networks:
+      - tradingbot
 
 networks:
   tradingbot:
