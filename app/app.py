@@ -5,11 +5,11 @@ from system.db import *
 
 app = Application()
 
-def CreateApp(config=dict()):
+def CreateApp():
     try:
         from config import config
     except:
-        from config_docker import config
+        from env import config
 
     default_config = {
         'db': {
