@@ -5,8 +5,12 @@ from system.db import *
 
 app = Application()
 
-def CreateApp():
-    from config import config
+def CreateApp(config=dict()):
+    try:
+        from config import config
+    except:
+        from config_docker import config
+
     default_config = {
         'db': {
             'host': None,

@@ -1,6 +1,7 @@
 import asyncio
 import time
 import psutil
+import sys
 from concurrent.futures import ThreadPoolExecutor
 
 from app import (
@@ -10,6 +11,8 @@ from app import (
 from app.symbol import RunSymbol
 from app.general.exchange_info import exchange_info
 from system.db import Mysql
+
+
 
 CreateApp()
 
@@ -55,6 +58,7 @@ async def active_symbols():
        GROUP BY symbols.symbol
    """)]
 if __name__ == '__main__':
+
 
     print(app.config.get())
     time.sleep(5)
