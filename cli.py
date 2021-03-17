@@ -59,13 +59,6 @@ async def active_symbols():
    """)]
 if __name__ == '__main__':
 
-    while True:
-        print("keeping it alive")
-
-        time.sleep(60)
-
-    exit()
-
 
     max_workers, = app.loop.run_until_complete(startup())
     ex = ThreadPoolExecutor(max_workers=max_workers)
