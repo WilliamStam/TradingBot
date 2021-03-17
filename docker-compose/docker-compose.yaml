@@ -10,7 +10,10 @@ services:
     volumes:
       - /tradebot/.data/mysql:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: stars
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
     networks:
       - tradingbot
 
@@ -25,6 +28,8 @@ services:
   bot:
     image: ghcr.io/williamstam/tradingbot:latest
     restart: unless-stopped
+    links:
+      - "db:db"
     depends_on:
       - db
     networks:
