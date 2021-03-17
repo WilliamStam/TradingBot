@@ -15,4 +15,4 @@ ENV DB_PASSWORD=""
 ENV DB_PORT=""
 
 
-CMD [ "python3", "cli.py" ]
+CMD [ "python3", "-u", "cli.py" ]

@@ -2,6 +2,8 @@ import asyncio
 import time
 import psutil
 import sys
+import signal
+
 from concurrent.futures import ThreadPoolExecutor
 
 from app import (
@@ -57,13 +59,11 @@ async def active_symbols():
        WHERE symbols.trading = '1' AND users_symbols.enabled = '1'
        GROUP BY symbols.symbol
    """)]
-if __name__ == '__main__':
 
-    print(app.config.get())
+if __name__ == '__main__':
 
     max_workers, = app.loop.run_until_complete(startup())
     ex = ThreadPoolExecutor(max_workers=max_workers)
-
 
     while True:
         symbols = app.loop.run_until_complete(active_symbols())
@@ -72,7 +72,6 @@ if __name__ == '__main__':
             if not symbol.get("running"):
                 # print("Need to start:",symbol.get("symbol"))
                 ex.submit(RunSymbol, symbol=symbol.get('symbol'))
-
 
         try:
             time.sleep(15)
