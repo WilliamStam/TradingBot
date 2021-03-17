@@ -8,7 +8,7 @@ services:
     ports:
       - 3306:3306
     volumes:
-      - /tradebot/data:/var/lib/mysql
+      - /tradebot/.data/mysql:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: stars
     networks:
@@ -17,21 +17,27 @@ services:
   adminer:
     image: adminer
     restart: unless-stopped
-    depends_on:
-      - db
     ports:
       - 3307:8080
     networks:
       - tradingbot
 
-
   bot:
-    image: ghcr.io/WilliamStam/TradingBot:latest
+    image: ghcr.io/williamstam/tradingbot:latest
     restart: unless-stopped
     depends_on:
       - db
     networks:
       - tradingbot
+    environment:
+      - API_BASE=${API_BASE}
+      - API_KEY=${API_KEY}
+      - API_SECRET=${API_SECRET}
+
+      - DB_HOST=${DB_HOST}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_PORT=${DB_PORT}
 
 networks:
   tradingbot:

@@ -1,0 +1,14 @@
+config = {
+    'api': {
+        'base': "",
+        'key': "",
+        'secret': ""
+    },
+    'db': {
+        'host': '',
+        'database': '',
+        'username': '',
+        'password': '',
+        'port': '',
+    },
+}
