@@ -59,6 +59,7 @@ async def active_symbols():
    """)]
 if __name__ == '__main__':
 
+    print(app.config.get())
 
     max_workers, = app.loop.run_until_complete(startup())
     ex = ThreadPoolExecutor(max_workers=max_workers)
