@@ -1,0 +1,15 @@
+[Unit]
+Description=TradingBot Service
+After=multi-user.target
+Conflicts=getty@tty1.service
+[Service]
+RemainAfterExit=yes
+Type=simple
+ExecStart=/tradebot/venv/bin/python /tradebot/cli.py
+ExecStop=/tradebot/venv/bin/python /tradebot/cli.py service stop -d
+StandardInput=tty-force
+Environment=PYTHONUNBUFFERED=1
+Restart=always
+RuntimeMaxSec=3600
+[Install]
+WantedBy=multi-user.target
