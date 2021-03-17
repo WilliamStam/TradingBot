@@ -28,7 +28,7 @@ class Mysql:
         '''
         self.db_args = {
             'host': host,
-            'port': port,
+            'port': int(port),
             'db': database,
             'user': user,
             'password': password,
